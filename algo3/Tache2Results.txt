@@ -1,0 +1,52 @@
+PS C:\Projets\ULB\algo3> cd algo3
+PS C:\Projets\ULB\algo3\algo3> java -Xmx2g Tache2 dblp-2026-01-01.xml.gz base/dblp.dtd
+Rang: 1
+Taille: 133
+Diamètre: 30
+Membres: [Xiwen Yao, Gong Cheng 0003, Junwei Han 0001, Xingxing Xie, Xintao Hu, Heng Huang, Xiaoqian Wang 0001, Feiping Nie 0001, Yi Yang 0001, Fei Wu 0001, Yueting Zhuang, Jun Yang 0003, Alexander G. Hauptmann, Rong Yan, Rong Jin 0001, Luo Si, Wei-Hao Lin 0003, Kun Kuang, Qi Tian 0001, Jinhui Tang 0001, Zechao Li, Jing Liu 0001, Meng Wang 0001, Richang Hong, Zheng-Jun Zha, Heliang Zheng, Jing Zhao, Xianghai Cao, Jie Feng 0003, Ronghua Shang, Weitong Zhang, Yangyang Li 0001, Yanqiao Chen, Licheng Jiao, Xiaoqiang Lu, Xiangtao Zheng, Bin Zhao 0001, Xuelong Li 0001, Hongyuan Zhang 0001, Rui Zhang 0017, Zhanxuan Hu, Yanwei Pang, Jin Xie 0005, Yuan Yuan 0001, Junyu Gao 0001, Qi Wang 0009, Qiang Li 0042, Mulin Chen, Zhitong Xiong, Huiyu Zhou 0001, Xiangrong Zhang, Guanchun Wang, Jingjing Ma 0001, Xu Tang 0004, Xu Liu 0006, Fang Liu 0034, Maoguo Gong, Jia Liu 0020, Wenhua Zhang, Wenping Ma 0001, Hao Zhu 0009, Yue Wu 0004, Xiaolong Fan, Yongzhe Yuan, Hao Li 0009, Yu Xie 0009, Bin Yu 0011, Chen Zhang 0015, Zedong Tang, Lijia Ma, Qiuzhen Lin, Jianqiang Li 0001, Jie Chen 0027, Qing Cai, Biao Hou, Shuang Wang 0001, Jiale Cao, Yongsheng Dong, Ling Shao 0001, Dacheng Tao, Chang Xu 0002, Chaoyue Wang, Zheng Wang 0037, Rong Wang 0001, Shuyuan Yang 0001, Lixia Yang, Min Wang 0007, Zhixi Feng, Lingling Li 0002, Fang Liu 0001, Guo-Jun Qi, Nicu Sebe, Ira Cohen, Michael S. Lew, Jie Yu 0001, Xiaohan Wang, Xiaolin Wu 0001, Xiangjun Zhang, Lei Zhang 0006, Wangmeng Zuo, David Zhang 0001, Jie Zhou 0001, Guangyi Chen 0002, Zijian Li 0001, Ruichu Cai, Weilin Chen 0001, Jie Qiao, Zhengming Chen 0002, Feng Xie 0002, Yan Zeng 0002, Libo Huang, Sheng Ma, Tao Li 0001, Chris H. Q. Ding, Hua Wang 0007, Fei Wang 0001, Peng Cui 0001, Wei Chen 0103, Wen Wen, Zhifeng Hao, Quanquan Gu, Pan Xu 0002, Dongruo Zhou, Jiafan He, Jiwen Lu, Junlin Hu 0001, Venice Erin Liong, Liang Lin, Xiaodan Liang, Yunchao Wei, Linchao Zhu, Shiming Xiang, Dingwen Zhang]
+---------------------------
+Rang: 2
+Taille: 73
+Diamètre: 35
+Membres: [Geoffrey Ye Li, Zhijin Qin, Yuanwei Liu, Xidong Mu, Zhaolin Wang 0001, Chongjun Ouyang, Hao Xu 0020, Jiaqi Xu, Xiao Liu 0018, Xingwang Li 0001, Kefeng Guo, Min Wu 0008, Zhenghua Chen, Yuecong Xu, Jianfei Yang, Han Zou, Haozhi Cao, Kai Wang 0036, Wangbo Zhao, Nian Liu 0002, Ming Zeng 0002, Wanming Hao, Zheng Chu 0001, Fuhui Zhou, Zhengyu Zhu 0001, Gangcan Sun, Chenhao Qi 0001, Shiwen He, Yongming Huang 0001, Xiaohu You 0001, Bin Sheng 0003, Chuan Zhang 0001, Lan Tang, Jiamin Li 0001, Pengcheng Zhu 0001, Dongming Wang 0002, Jingyu Hua, Feng Li 0008, Xin Liu 0009, Zhenyu Na, Weidang Lu, Guoxing Huang, Yuan Wu 0001, Li Ping Qian 0001, Liang Huang 0006, Yu Zhang 0015, Zhaoyang Zhang 0001, Caijun Zhong, Yuzhen Huang 0001, Fawaz S. Al-Qahtani, Redha M. Radaydeh, Huazi Zhang, Richeng Jin, Xiaofan He, Ali Rahmati, Seyyedali Hosseinalipour, Minghui Liwang, Zhipeng Cheng, Ning Chen 0011, Peiying Zhang 0001, Haipeng Yao, Chao Qiu, Xiaofei Wang 0001, Xiuhua Li, Chenyang Wang 0001, Chao Wang 0093, Li Wang 0041, Cheng-Xiang Wang 0001, Hongjian Sun 0001, Jing Jiang 0004, Nan Zhao 0001, Wei Huang 0010, Caihong Kai]
+---------------------------
+Rang: 3
+Taille: 38
+Diamètre: 13
+Membres: [Georg Gottlob, Nicola Leone, Francesco Ricca, Marco Manna, Simona Perri, Wolfgang Faber 0001, Thomas Eiter, Magdalena Ortiz 0001, Giorgio Terracina, Luigi Palopoli 0001, Sergio Greco, Andrea Tagarelli, Roberto Interdonato, Gianluigi Greco, Matthias Lanzinger, Luigi Bellomarini, Paolo Atzeni, Giansalvatore Mecca, Riccardo Torlone, Danilo Montesi, Elisa Bertino, Vijayalakshmi Atluri, Soon Ae Chun, Paolo Cappellari, Nabil R. Adam, Aabhas V. Paliwal, Vandana Pursnani Janeja, Bhavani Thuraisingham, Kevin W. Hamlen, Dan Lin 0001, Anna Cinzia Squicciarini, Christopher Griffin 0001, Smitha Sundareswaran, Federica Paci, Dinesh C. Verma, Seraphin B. Calo, Paolo Papotti, Luca Cabibbo]
+---------------------------
+Rang: 4
+Taille: 34
+Diamètre: 7
+Membres: [Donald Elmazi, Ryoichiro Obukata, Tetsuya Oda, Miralda Cuka, Takaaki Inaba, Kosuke Ozera, Shinji Sakamoto, Seiji Ohara, Admir Barolli, Fatos Xhafa, Santi Caball, David Gan, Jordi Conesa, Leonard Barolli, Giuseppe De Marco, Makoto Ikeda, Masahiro Hiyama, Elis Kulla, Keita Matsuo, Shunya Higashi, Ermioni Qafzezi, Phudit Ampririt, Kevin Bylykbashi, Yi Liu 0011, Fumio Arakawa, Evjola Spaho, Taiki Honda, Vladi Kolici, Mimoza Durresi, Arjan Durresi, Vamsi Paruchuri, Akio Koyama, Joanna Kolodziej, Thanasis Daradoumis]
+---------------------------
+Rang: 5
+Taille: 33
+Diamètre: 6
+Membres: [Giovanni Semeraro, Marco Degemmis, Pierpaolo Basile, Marco Polignano, Cataldo Musto, Fedelucio Narducci, Pasquale Lops, Lucia Siciliani, Marco de Gemmis, Pierluigi Cassotti, Annalina Caputo, Floriana Esposito, Domenico Redavid, Stefano Ferilli, Berardina De Carolis, Fiorella de Rosis, Eleonora Bernasconi, Teresa Maria Altomare Basile, Marenglen Biba, Nicola Di Mauro, Antonio Vergari, Andrea Pazienza, Davide Di Pierro, Donato Malerba, Michelangelo Ceci, Roberto Corizzo, Annalisa Appice, Corrado Loglisci, Anna Ciampi, Fabio Fumarola, Nicola Fanizzi, Claudia d'Amato, Francesca A. Lisi]
+---------------------------
+Rang: 6
+Taille: 30
+Diamètre: 17
+Membres: [Feng Xia 0001, Xiangjie Kong 0001, Guojiang Shen, Wei Wang 0077, Haifeng Liu, Mingliang Hou, Honglong Chen, Zhibo Wang 0001, Xiaoyi Pang, Qian Wang 0002, Shengshan Hu, Minghui Li, Yechao Zhang, Wei Wan, Kui Ren 0001, Jin Li 0002, Xiaofeng Chen 0001, Haibo Tian, Fangguo Zhang, Shengli Liu 0001, Jian Weng 0001, Yang Yang 0026, Ximeng Liu, Qian Liu, Zhiguo Gong, Jinbo Xiong, Qi Li 0011, Zheli Liu, Jingwei Li 0001, Shuo Yu 0001]
+---------------------------
+Rang: 7
+Taille: 27
+Diamètre: 10
+Membres: [Gautam Srivastava 0001, Jimmy Ming-Tai Wu, Jerry Chun-Wei Lin, Philippe Fournier-Viger, Wensheng Gan, Jiahui Chen 0002, Shicheng Wan, Chien-Ming Chen 0001, Hung-Min Sun, Tsu-Yang Wu, Yuh-Min Tseng, Jui-Di Wu, Tung-Tso Tsai, Usef Faghihi, Youcef Djenouri, Asma Belhadi, Tzung-Pei Hong, Yeong-Chyi Lee, Chun-Hao Chen, Yu-Chuan Tsai, Shyue-Liang Wang, Guo-Cheng Lan, Chun-Wei Lin 0001, Wen-Yang Lin, Ming-Cheng Tseng, Ja-Hwung Su, Vincent S. Tseng]
+---------------------------
+Rang: 8
+Taille: 26
+Diamètre: 12
+Membres: [Petar Popovski, Elisabeth de Carvalho, Emil Bjrnson, Zheng Chen 0002, Nikolaos Pappas 0001, Marios Kountouris, Luca Sanguinetti, Michele Morelli, Antonio A. D'Amico, Alessio Zappone, Stefano Buzzi, Luca Venturino, Emanuele Grossi, Carmen D'Andrea, Marco Di Renzo, Athanasios Stavridis 0001, Henk Wymeersch, George C. Alexandropoulos, Aris L. Moustakas, Konstantinos D. Katsanos, Musa Furkan Keskin, Wei Lu 0012, Nuno K. Pratas, Jimmy Jessen Nielsen, Kasper F. Trillingsgaard, Cedomir Stefanovic]
+---------------------------
+Rang: 9
+Taille: 23
+Diamètre: 6
+Membres: [Bjrn W. Schuller, Alexander Kathan, Lukas Christ, Shahin Amiriparian, Maurice Gerczuk, Andreas Triantafyllopoulos, Nicholas Cummins, Jun Deng, Zixing Zhang 0001, Jing Han 0010, Zhao Ren, Xinzhou Xu, Kun Qian 0003, Yue Zhang 0014, Florian Eyben, Felix Weninger, Martin Wllmer, Felix Burkhardt, Anton Batliner, Panagiotis Tzirakis, Alice Baird, Shuo Liu 0012, Dejan Arsic]
+---------------------------
+Rang: 10
+Taille: 21
+Diamètre: 7
+Membres: [Olivier Boissier, Jomi Fred Hbner, Rafael H. Bordini, Alessandro Ricci, Andrea Omicini, Enrico Denti, Mirko Viroli, Matteo Casadei, Danilo Pianini, Giorgio Audrito, Roberto Casadei, Gianluca Aguzzi, Sara Montagna, Angelo Croatti, Franco Zambonelli, Marco Mamei, Jacob Beal, Ferruccio Damiani, Michael Lienhardt, Andrea Santi, Michele Piunti]
+---------------------------
