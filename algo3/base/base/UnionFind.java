@@ -2,6 +2,8 @@ import java.util.Arrays;
 import java.util.PriorityQueue;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class UnionFind {
     int[] height, parent, size;
@@ -101,4 +103,15 @@ public class UnionFind {
         return result;
     }
 
+    public Map<Integer, Integer> getHistogrammeTailles() {
+        Map<Integer, Integer> histogramme = new TreeMap<>();
+
+        for (int i = 0; i < count; i++) {
+            if (parent[i] == i) {
+                int taille = size[i];
+                histogramme.put(taille, histogramme.getOrDefault(taille, 0) + 1);
+            }
+        }
+        return histogramme;
+    }
 }

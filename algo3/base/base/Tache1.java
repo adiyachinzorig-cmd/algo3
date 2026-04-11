@@ -1,6 +1,8 @@
 import java.io.FileNotFoundException;
 import java.nio.file.*;
 import java.util.*;
+import java.io.PrintWriter;
+import java.io.IOException;
 
 /**
  * Usage:
@@ -105,6 +107,20 @@ public class Tache1 {
                 for (String other : others) {
                     communauté.union(first, other);
                 }
+            }
+            System.out.println("Fin de la lecture. Génération de l'histogramme...");
+            
+            // On récupère les données
+            Map<Integer, Integer> histogramme = communauté.getHistogrammeTailles();
+            
+            try (PrintWriter writer = new PrintWriter("histogramme.csv")) {
+                
+                for (Map.Entry<Integer, Integer> entree : histogramme.entrySet()) {
+                    writer.println(entree.getKey() + "," + entree.getValue());
+                }
+                
+            } catch (IOException e) {
+                System.err.println("Erreur lors de l'écriture du fichier histogramme" );
             }
         }
     }

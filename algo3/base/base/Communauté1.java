@@ -1,6 +1,7 @@
 import java.util.HashMap;
 import java.util.Map;
 import java.util.List;
+import java.util.Map;
 
 
 public class Communauté1 {
@@ -34,5 +35,9 @@ public class Communauté1 {
 
     public List<Integer> getTop10Tailles() {
         return unionFind.getTop10Tailles();
+    }
+
+    public Map<Integer, Integer> getHistogrammeTailles() {
+        return this.unionFind.getHistogrammeTailles();
     }
 }
