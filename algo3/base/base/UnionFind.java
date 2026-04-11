@@ -1,9 +1,13 @@
 import java.util.Arrays;
+import java.util.PriorityQueue;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UnionFind {
     int[] height, parent, size;
     int count;
     int capacity;
+    int nbCommunautes;
 
     public UnionFind(int n) {
         this.capacity = n;
@@ -11,6 +15,7 @@ public class UnionFind {
         this.parent = new int[capacity];
         this.size = new int[capacity];
         this.count = 0;
+        this.nbCommunautes = 0;
     }
 
     public int find(int i) {
@@ -37,13 +42,14 @@ public class UnionFind {
             size[rootI] += size[rootJ];
         }
 
-        if (height[rootI] > height[rootJ]) {
+        else if (height[rootI] > height[rootJ]) {
             parent[rootJ] = rootI;
             size[rootI] += size[rootJ];
         } else {
             parent[rootI] = rootJ;
             size[rootJ] += size[rootI];
         }
+        nbCommunautes--;
     }
 
     public int add() {
@@ -60,6 +66,7 @@ public class UnionFind {
         height[id] = 0;
         size[id] = 1;
         
+        nbCommunautes++;
         count++;
         return id;
     }
@@ -68,4 +75,30 @@ public class UnionFind {
         return size[find(i)];
     }
     
+    public int getNombreDeCommunautes() {
+        return nbCommunautes;
+    }
+
+    public List<Integer> getTop10Tailles() {
+        PriorityQueue<Integer> top10Heap = new PriorityQueue<>();
+
+        for (int i = 0; i < count; i++) {
+            if (parent[i] == i) {
+                
+                top10Heap.offer(size[i]);
+                
+                if (top10Heap.size() > 10) {
+                    top10Heap.poll(); 
+                }
+            }
+        }
+
+        List<Integer> result = new ArrayList<>();
+        while (!top10Heap.isEmpty()) {
+            result.add(0, top10Heap.poll());
+        }
+
+        return result;
+    }
+
 }
