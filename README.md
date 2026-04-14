@@ -29,3 +29,5 @@ Le projet est organisé de la manière suivante :
 ```bash
 make compile
 # Ou sous Windows (Git Bash/MSYS2) : mingw32-make compile
+
+---------------------------------------------------------------------------------------------------------------------------
