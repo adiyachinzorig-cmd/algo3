@@ -53,6 +53,7 @@ public class Tache2 {
         List<List<String>> sccs = findSCCs(nodes, adj);
         sccs.sort((a, b) -> Integer.compare(b.size(), a.size()));
 
+        System.out.println("=== TOP 10 COMMUNAUTÉS ===");
         for (int i = 0; i < Math.min(10, sccs.size()); i++) {
             List<String> community = sccs.get(i);
             int diameter = computeDiameter(community, adj);
@@ -61,6 +62,38 @@ public class Tache2 {
             System.out.println("Diamètre: " + diameter);
             System.out.println("Membres: " + community);
             System.out.println("---------------------------");
+        }
+
+        // 2. Génération de l'histogramme des tailles
+        System.out.println("\n=== HISTOGRAMME DES TAILLES DE COMMUNAUTÉS ===");
+        printHistogram(sccs);
+    }
+
+    private static void printHistogram(List<List<String>> sccs) {
+        if (sccs.isEmpty()) return;
+
+        Map<Integer, Integer> distribution = new TreeMap<>();
+        for (List<String> scc : sccs) {
+            int size = scc.size();
+            distribution.put(size, distribution.getOrDefault(size, 0) + 1);
+        }
+
+        // On utilise le logarithme du maxCount pour l'échelle
+        double maxLog = Math.log(distribution.values().stream().max(Integer::compare).orElse(1));
+        int scale = 50; 
+
+        System.out.println("\n(Échelle logarithmique : chaque cran représente une progression exponentielle)");
+        for (var entry : distribution.entrySet()) {
+            int size = entry.getKey();
+            int count = entry.getValue();
+            
+            // CALCUL LOGARITHMIQUE ICI
+            int barLength = (int) ((Math.log(count) / maxLog) * scale);
+            
+            // On s'assure d'avoir au moins un caractère si count > 0
+            String bar = "█".repeat(Math.max(1, barLength));
+
+            System.out.printf("Taille %4d | %-7d | %s%n", size, count, bar);
         }
     }
 
