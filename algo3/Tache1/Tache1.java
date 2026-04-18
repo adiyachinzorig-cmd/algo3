@@ -110,10 +110,9 @@ public class Tache1 {
             }
             System.out.println("Fin de la lecture. Génération de l'histogramme...");
             
-            // On récupère les données
             Map<Integer, Integer> histogramme = communauté.getHistogrammeTailles();
             
-            try (PrintWriter writer = new PrintWriter("histogramme.csv")) {
+            try (PrintWriter writer = new PrintWriter("histogrammeTache1.csv")) {
                 
                 for (Map.Entry<Integer, Integer> entree : histogramme.entrySet()) {
                     writer.println(entree.getKey() + "," + entree.getValue());
