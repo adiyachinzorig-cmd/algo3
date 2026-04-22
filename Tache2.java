@@ -5,6 +5,23 @@ import java.util.*;
 
 public class Tache2 {
 
+    // Classe interne pour gérer la traduction Nom <-> ID plus rapide et moins gourmande en mémoire
+    static class AuthorIndexer {
+        private Map<String, Integer> nameToId = new HashMap<>();
+        private List<String> idToName = new ArrayList<>();
+
+        public int getOrCreateId(String name) {
+            return nameToId.computeIfAbsent(name, k -> {
+                idToName.add(k);
+                return idToName.size() - 1;
+            });
+        }
+
+        public String getName(int id) {
+            return idToName.get(id);
+        }
+    }
+
     public static void main(String[] args) throws Exception {
         if (args.length < 2) {
             System.err.println("Usage: java -Xmx2g Tache2 <xml_file> <dtd_file>");
@@ -14,7 +31,9 @@ public class Tache2 {
         Path xmlPath = Paths.get(args[0]);
         Path dtdPath = Paths.get(args[1]);
 
-        Map<String, Map<String, Integer>> counters = new HashMap<>();
+        AuthorIndexer indexer = new AuthorIndexer();
+        // Integer pour les IDs d'auteurs, Integer pour les compteurs de co-publications
+        Map<Integer, Map<Integer, Integer>> counters = new HashMap<>();
 
         try (DblpPublicationGenerator gen = new DblpPublicationGenerator(xmlPath, dtdPath, 0)) {      
             while (true) {
@@ -23,23 +42,26 @@ public class Tache2 {
 
                 List<String> authors = opt.get().authors;
                 if (authors != null && authors.size() >= 2) {
-                    String a = authors.get(0);
+                    // Convertit l'auteur principal en ID
+                    int idA = indexer.getOrCreateId(authors.get(0));
+                    
                     for (int i = 1; i < authors.size(); i++) {
-                        String b = authors.get(i);
-                        if (!a.equals(b)) {
-                            counters.computeIfAbsent(a, k -> new HashMap<>())
-                                    .merge(b, 1, Integer::sum);
+                        int idB = indexer.getOrCreateId(authors.get(i));
+                        if (idA != idB) {
+                            counters.computeIfAbsent(idA, k -> new HashMap<>())
+                                    .merge(idB, 1, Integer::sum);
                         }
                     }
                 }
             }
         }
 
-        Map<String, List<String>> adj = new HashMap<>();
-        Set<String> nodes = new HashSet<>();
+        // Structure d'adjacence 
+        Map<Integer, List<Integer>> adj = new HashMap<>();
+        Set<Integer> nodes = new HashSet<>();
 
         for (var entry : counters.entrySet()) {
-            String u = entry.getKey();
+            int u = entry.getKey();
             for (var target : entry.getValue().entrySet()) {
                 if (target.getValue() >= 6) {
                     adj.computeIfAbsent(u, k -> new ArrayList<>()).add(target.getKey());
@@ -50,73 +72,50 @@ public class Tache2 {
         }
         counters = null; 
 
-        List<List<String>> sccs = findSCCs(nodes, adj);
+        List<List<Integer>> sccs = findSCCs(nodes, adj);
         sccs.sort((a, b) -> Integer.compare(b.size(), a.size()));
 
         System.out.println("=== TOP 10 COMMUNAUTÉS ===");
         for (int i = 0; i < Math.min(10, sccs.size()); i++) {
-            List<String> community = sccs.get(i);
+            List<Integer> community = sccs.get(i);
             int diameter = computeDiameter(community, adj);
+            
+            // Convertit les IDs en noms pour l'affichage
+            List<String> memberNames = new ArrayList<>();
+            for(int id : community) memberNames.add(indexer.getName(id));
+
             System.out.println("Rang: " + (i + 1));
             System.out.println("Taille: " + community.size());
             System.out.println("Diamètre: " + diameter);
-            System.out.println("Membres: " + community);
+            System.out.println("Membres: " + memberNames);
             System.out.println("---------------------------");
         }
 
-        // 2. Génération de l'histogramme des tailles
-        System.out.println("\n=== HISTOGRAMME DES TAILLES DE COMMUNAUTÉS ===");
+        System.out.println("\n=== HISTOGRAMME DES TAILLES ===");
         printHistogram(sccs);
     }
 
-    private static void printHistogram(List<List<String>> sccs) {
-        if (sccs.isEmpty()) return;
-
-        Map<Integer, Integer> distribution = new TreeMap<>();
-        for (List<String> scc : sccs) {
-            int size = scc.size();
-            distribution.put(size, distribution.getOrDefault(size, 0) + 1);
-        }
-
-        // On utilise le logarithme du maxCount pour l'échelle
-        double maxLog = Math.log(distribution.values().stream().max(Integer::compare).orElse(1));
-        int scale = 50; 
-
-        System.out.println("\n(Échelle logarithmique : chaque cran représente une progression exponentielle)");
-        for (var entry : distribution.entrySet()) {
-            int size = entry.getKey();
-            int count = entry.getValue();
-            
-            // CALCUL LOGARITHMIQUE ICI
-            int barLength = (int) ((Math.log(count) / maxLog) * scale);
-            
-            // On s'assure d'avoir au moins un caractère si count > 0
-            String bar = "█".repeat(Math.max(1, barLength));
-
-            System.out.printf("Taille %4d | %-7d | %s%n", size, count, bar);
-        }
-    }
-
-    private static List<List<String>> findSCCs(Set<String> nodes, Map<String, List<String>> adj) {
-        Stack<String> stack = new Stack<>();
-        Set<String> visited = new HashSet<>();
-        for (String node : nodes) {
+// Utulise Integer pour les IDs d'auteurs, ce qui est plus rapide et moins gourmand en mémoire que les chaînes de caractères
+    private static List<List<Integer>> findSCCs(Set<Integer> nodes, Map<Integer, List<Integer>> adj) {
+        Stack<Integer> stack = new Stack<>();
+        Set<Integer> visited = new HashSet<>();
+        for (Integer node : nodes) {
             if (!visited.contains(node)) fillOrder(node, visited, stack, adj);
         }
 
-        Map<String, List<String>> revAdj = new HashMap<>();
+        Map<Integer, List<Integer>> revAdj = new HashMap<>();
         for (var entry : adj.entrySet()) {
-            for (String neighbor : entry.getValue()) {
+            for (Integer neighbor : entry.getValue()) {
                 revAdj.computeIfAbsent(neighbor, k -> new ArrayList<>()).add(entry.getKey());
             }
         }
 
-        List<List<String>> sccs = new ArrayList<>();
+        List<List<Integer>> sccs = new ArrayList<>();
         visited.clear();
         while (!stack.isEmpty()) {
-            String node = stack.pop();
+            Integer node = stack.pop();
             if (!visited.contains(node)) {
-                List<String> component = new ArrayList<>();
+                List<Integer> component = new ArrayList<>();
                 dfsRev(node, visited, component, revAdj);
                 sccs.add(component);
             }
@@ -124,43 +123,43 @@ public class Tache2 {
         return sccs;
     }
 
-    private static void fillOrder(String u, Set<String> visited, Stack<String> stack, Map<String, List<String>> adj) {
+    private static void fillOrder(Integer u, Set<Integer> visited, Stack<Integer> stack, Map<Integer, List<Integer>> adj) {
         visited.add(u);
-        List<String> neighbors = adj.get(u);
+        List<Integer> neighbors = adj.get(u);
         if (neighbors != null) {
-            for (String v : neighbors) {
+            for (Integer v : neighbors) {
                 if (!visited.contains(v)) fillOrder(v, visited, stack, adj);
             }
         }
         stack.push(u);
     }
 
-    private static void dfsRev(String u, Set<String> visited, List<String> comp, Map<String, List<String>> revAdj) {
+    private static void dfsRev(Integer u, Set<Integer> visited, List<Integer> comp, Map<Integer, List<Integer>> revAdj) {
         visited.add(u);
         comp.add(u);
-        List<String> neighbors = revAdj.get(u);
+        List<Integer> neighbors = revAdj.get(u);
         if (neighbors != null) {
-            for (String v : neighbors) {
+            for (Integer v : neighbors) {
                 if (!visited.contains(v)) dfsRev(v, visited, comp, revAdj);
             }
         }
     }
 
-    private static int computeDiameter(List<String> community, Map<String, List<String>> adj) {
+    private static int computeDiameter(List<Integer> community, Map<Integer, List<Integer>> adj) {
         int maxDist = 0;
-        Set<String> members = new HashSet<>(community);
-        for (String start : community) {
-            Map<String, Integer> dists = new HashMap<>();
-            Queue<String> q = new LinkedList<>();
+        Set<Integer> members = new HashSet<>(community);
+        for (Integer start : community) {
+            Map<Integer, Integer> dists = new HashMap<>();
+            Queue<Integer> q = new LinkedList<>();
             q.add(start);
             dists.put(start, 0);
             while (!q.isEmpty()) {
-                String u = q.poll();
+                Integer u = q.poll();
                 int d = dists.get(u);
                 maxDist = Math.max(maxDist, d);
-                List<String> neighbors = adj.get(u);
+                List<Integer> neighbors = adj.get(u);
                 if (neighbors != null) {
-                    for (String v : neighbors) {
+                    for (Integer v : neighbors) {
                         if (members.contains(v) && !dists.containsKey(v)) {
                             dists.put(v, d + 1);
                             q.add(v);
@@ -170,5 +169,20 @@ public class Tache2 {
             }
         }
         return maxDist;
+    }
+
+    private static void printHistogram(List<List<Integer>> sccs) {
+        Map<Integer, Integer> distribution = new TreeMap<>();
+        for (List<Integer> scc : sccs) {
+            int size = scc.size();
+            distribution.put(size, distribution.getOrDefault(size, 0) + 1);
+        }
+        if (distribution.isEmpty()) return;
+        double maxLog = Math.log(distribution.values().stream().max(Integer::compare).get());
+        for (var entry : distribution.entrySet()) {
+            int count = entry.getValue();
+            int barLength = (int) ((Math.log(count) / maxLog) * 40);
+            System.out.printf("Taille %4d | %-7d | %s%n", entry.getKey(), count, "█".repeat(Math.max(1, barLength)));
+        }
     }
 }
