@@ -1,33 +1,43 @@
-# Projet INFO-F-203 : Détection de communautés dans DBLP
-
-Ce projet, réalisé dans le cadre du cours d'Algorithmique 2 (Année académique 2025-2026), porte sur l'analyse de la base de données bibliographiques DBLP. L'objectif est d'identifier des communautés d'auteurs en modélisant leurs collaborations sous forme de graphe et en extrayant les Composantes Fortement Connexes (SCC).
-
-## 1. Description du problème
-Le projet traite un flux massif de données XML pour :
-1.  Identifier les paires d'auteurs ayant collaboré au moins 6 fois.
-2.  Construire un graphe orienté où chaque arc représente cette collaboration fréquente.
-3.  Détecter les communautés via un algorithme de calcul de SCC.
-4.  Analyser la structure de ces communautés en calculant le diamètre des 10 plus grandes d'entre elles.
-
-## 2. Structure du projet
+## 1. Structure du projet
 Le projet est organisé de la manière suivante :
 * `base/` : Outils de parsing fournis.
     * `DblpPublicationGenerator.java` : Lecteur séquentiel (SAX) du flux XML pour limiter l'empreinte mémoire.
-    * `dblp.dtd` : Fichier de définition pour la validation XML.
-* `Tache2.java` : Cœur algorithmique du projet (Traitement "online", construction du graphe, algorithme de Tarjan/Kosaraju).
-* `Makefile` : Automatisation de la compilation et de l'exécution.
-* `README.md` : Documentation du projet.
+*`Tache1/` : Outils/Classes pour la Tache1
+* `Tache1.java` : Résolution de la tache 1
+* `Tache2.java` : Résolution de la tache 2
+* `dblp.dtd` : fichier dblp.dtd
+* `graphique.py` : code python qui affiche les résultat de la tache 1
 
-## 3. Prérequis
-* **Java JDK 21** ou supérieur.
-* **GNU Make** (ou `mingw32-make` sous Windows/MSYS2).
-* **Données** : Le fichier `dblp-2026-01-01.xml.gz` doit être placé à la racine du projet.
+Il faut placer dblp-2026-01-01.xml à la racine du projet
 
-## 4. Utilisation
+## 2. Compilation 
+Pour compiler la tache 1 :
+javac Tache1.java Tache1/*.java base/DblpPublicationGenerator.java
 
-### Compilation
-```bash
-make compile
-# Ou sous Windows (Git Bash/MSYS2) : mingw32-make compile
 
----------------------------------------------------------------------------------------------------------------------------
+
+Pour compiler la tache 2 :
+
+????
+
+## 3. Execution
+Pour executer Tache 1 :
+java Tache1 dblp-2026-01-01.xml.gz dblp.dtd
+
+Vous pouvez également ajouter l’argument --limit=N pour vous limiter aux premières N publications du fichier xml.
+
+Pour l'histogramme, il faut simplement lancer `graphique.py` sans argument
+
+
+
+Pour executer Tache 2 :
+
+???
+
+
+## 4. Sortie 
+Tache 1 :
+Un document csv `histogrammeTache1.csv` contenant la taille ainsi que la fréquence d'apparition des communautés. Il peut être mis sous forme de graphe avec `graphique.py`
+
+
+Tache 2 :

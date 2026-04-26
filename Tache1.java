@@ -3,6 +3,8 @@ import java.nio.file.*;
 import java.util.*;
 import java.io.PrintWriter;
 import java.io.IOException;
+import base.DblpPublicationGenerator;
+import Tache1.Communauté1;
 
 /**
  * Usage:
