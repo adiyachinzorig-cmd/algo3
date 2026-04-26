@@ -7,12 +7,14 @@ import java.util.Map;
 import java.util.TreeMap;
 
 public class UnionFind {
+
     int[] height, parent, size;
     int count;
     int capacity;
     int nbCommunautes;
 
     public UnionFind(int n) {
+        //création de la structure de données pour les communautés
         this.capacity = n;
         this.height = new int[capacity];
         this.parent = new int[capacity];
@@ -22,15 +24,16 @@ public class UnionFind {
     }
 
     public int find(int i) {
+        // Compression de chemin
         int root = parent[i];
       
         if (parent[root] != root) {
             return parent[i] = find(root);
         }
-      
         return root;
     }
 
+    // Union pondéré (on vérifie la hauteur des arbres pour éviter de les déséquilibrer)
     public void union(int i, int j) {
         int rootI = find(i);
         int rootJ = find(j);
@@ -57,6 +60,7 @@ public class UnionFind {
 
     public int add() {
 
+        // Redimensionnement des tableaux si nécessaire
         if (count == capacity) {
             capacity *= 2;
             height = Arrays.copyOf(height, capacity);
@@ -82,20 +86,23 @@ public class UnionFind {
         return nbCommunautes;
     }
 
+    
     public List<Integer> getTop10Tailles() {
         PriorityQueue<Integer> top10Heap = new PriorityQueue<>();
 
         for (int i = 0; i < count; i++) {
             if (parent[i] == i) {
-                
+                // Ajout de la taille de la communauté au tas
                 top10Heap.offer(size[i]);
                 
+                // Si le tas dépasse 10 éléments, on retire le plus petit
                 if (top10Heap.size() > 10) {
                     top10Heap.poll(); 
                 }
             }
         }
 
+        // Extraction des tailles du tas dans une liste
         List<Integer> result = new ArrayList<>();
         while (!top10Heap.isEmpty()) {
             result.add(0, top10Heap.poll());
@@ -104,12 +111,15 @@ public class UnionFind {
         return result;
     }
 
+
     public Map<Integer, Integer> getHistogrammeTailles() {
+        // Utilisation d'une TreeMap pour trier les tailles de communautés
         Map<Integer, Integer> histogramme = new TreeMap<>();
 
         for (int i = 0; i < count; i++) {
             if (parent[i] == i) {
                 int taille = size[i];
+                // getOrDefault pour incrémenter le compteur de la taille de communauté
                 histogramme.put(taille, histogramme.getOrDefault(taille, 0) + 1);
             }
         }
