@@ -8,6 +8,7 @@ Le projet est organisé de la manière suivante :
 * `Tache1.java` : Résolution de la tache 1
 * `Tache2.java` : Résolution de la tache 2
 * `dblp.dtd` : fichier dblp.dtd
+* `Rapport_Algo.pdf`
 * `graphique.py` : code python qui affiche les résultat de la tache 1
 * `dblp-2026-01-01.xml`
 
